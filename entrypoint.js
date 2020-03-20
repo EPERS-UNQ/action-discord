@@ -30,7 +30,6 @@ _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 let url;
 let payload;
 var content = core.getInput('content', { required: false });
-console.log(JSON.stringify({ content: content }))
 
 if (content) {
   content = JSON.parse(_.template(content)({ ...process.env, EVENT_PAYLOAD: eventPayload }));
@@ -53,10 +52,8 @@ if (core.getInput('author')) {
 embed.fields = JSON.parse(_.template(core.getInput('fields'))({ ...process.env, EVENT_PAYLOAD: eventPayload }));
 if (!embed.fields) { embed.fields = [] }
 _.forEach(eventPayload.commits, function(commit) {
-  embed.fields.push({ name: commit.message, "value": "[" + commit.id + "](" + commit.url + ")" })
+  embed.fields.push({ name: "**"+commit.author.nnydjesus+"**", "value": "[`" + commit.id.substring(0, 7)+ "`](" + commit.url + ") " + commit.message  })
 })
-
-console.log(JSON.stringify({ content: content, embed: embed }))
 
 url = process.env.DISCORD_WEBHOOK;
 payload = JSON.stringify({
