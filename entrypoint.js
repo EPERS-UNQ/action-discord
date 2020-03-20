@@ -52,7 +52,7 @@ if (core.getInput('author')) {
 embed.fields = JSON.parse(_.template(core.getInput('fields'))({ ...process.env, EVENT_PAYLOAD: eventPayload }));
 if (!embed.fields) { embed.fields = [] }
 _.forEach(eventPayload.commits, function(commit) {
-  embed.fields.push({ name: "**"+commit.author.nnydjesus+"**", "value": "[`" + commit.id.substring(0, 7)+ "`](" + commit.url + ") " + commit.message  })
+  embed.fields.push({ name: "**"+commit.author.username+"**", "value": "[`" + commit.id.substring(0, 7)+ "`](" + commit.url + ") " + commit.message  })
 })
 
 url = process.env.DISCORD_WEBHOOK;
