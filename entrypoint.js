@@ -25,6 +25,7 @@ REQUIRED_ENV_VARS.forEach(env => {
 
 const eventContent = fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8');
 const eventPayload = JSON.parse(eventContent)
+console.log(eventPayload)
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 let url;
