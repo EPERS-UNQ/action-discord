@@ -25,7 +25,7 @@ REQUIRED_ENV_VARS.forEach(env => {
 
 const eventContent = fs.readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8');
 const eventPayload = JSON.parse(eventContent)
-console.log(eventPayload)
+
 _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
 
 let url;
@@ -63,8 +63,6 @@ payload = JSON.stringify({
   ...process.env.DISCORD_USERNAME && { username: process.env.DISCORD_USERNAME },
   ...process.env.DISCORD_AVATAR && { avatar_url: process.env.DISCORD_AVATAR },
 });
-
-console.log(payload)
 
 
 // curl -X POST -H "Content-Type: application/json" --data "$(cat $GITHUB_EVENT_PATH)" $DISCORD_WEBHOOK/github
