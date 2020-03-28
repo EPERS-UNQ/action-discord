@@ -63,6 +63,8 @@ payload = JSON.stringify({
   ...process.env.DISCORD_AVATAR && { avatar_url: process.env.DISCORD_AVATAR },
 });
 
+console.log(payload)
+
 
 // curl -X POST -H "Content-Type: application/json" --data "$(cat $GITHUB_EVENT_PATH)" $DISCORD_WEBHOOK/github
 
